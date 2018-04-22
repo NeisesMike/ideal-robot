@@ -54,10 +54,11 @@ uchar lPatterns[MAX_RAW][MAX_COLUMN] = {
 
 };
 
+uchar blank[8] = {0,0,0,0,0,0,0,0};
 uchar lChars[MAX_RAW][MAX_COLUMN] = {
 
 //Alphanumerics
-    {0x3C,0x42,0x42,0x42,0x42,0x42,0x42,0x3C},//0
+    {0x3C,0x42,0x62,0x52,0x4A,0x46,0x42,0x3C},//0
     {0x10,0x30,0x50,0x10,0x10,0x10,0x10,0x7C},//1
     {0x3E,0x02,0x02,0x3E,0x20,0x20,0x3E,0x00},//2
     {0x00,0x7C,0x04,0x04,0x7C,0x04,0x04,0x7C},//3
@@ -93,6 +94,10 @@ uchar lChars[MAX_RAW][MAX_COLUMN] = {
     {0x00,0x41,0x22,0x14,0x08,0x14,0x22,0x41},//X
     {0x41,0x22,0x14,0x08,0x08,0x08,0x08,0x08},//Y
     {0x00,0x7F,0x02,0x04,0x08,0x10,0x20,0x7F},//Z
+    {0x28,0x28,0x28,0x28,0x28,0x28,0x00,0x28},// !
+    {0x00,0xCC,0x22,0x22,0xCC,0x88,0x00,0x88},// ?
+    {0x00,0x24,0x24,0x00,0x42,0x24,0x18,0x00},// :)
+    {0x00,0x24,0x24,0x00,0x18,0x24,0x42,0x00},// :( 
 };
 
 static void pabort(const char *s) {
@@ -133,7 +138,8 @@ uchar* charDict( char aChar )
 {
     switch( aChar )
     {
-        case 255 : return NULL; break;
+        case '_' : return blank; break;
+        case '^' : return NULL; break;
         case '0' : return lChars[0]; break;
         case '1' : return lChars[1]; break;
         case '2' : return lChars[2]; break;
@@ -172,18 +178,18 @@ uchar* charDict( char aChar )
         case 'z' : return lChars[35]; break;
         case '!' : return lChars[36]; break;
         case '?' : return lChars[37]; break;
-        case '>' : return lChars[38]; break;
-        case '-' : return lChars[39]; break;
+        case ')' : return lChars[38]; break;
+        case '(' : return lChars[39]; break;
     }
 }
 
-void setLeftMatrix(int fd, char dictInt)
+void setLeftMatrix(int fd, uchar dictInt)
 {
     int i;
     uchar* temp = charDict( dictInt );
     if( temp != NULL )
     {
-        for(i = 0; i < MAX_COLUMN+1; i++)
+        for(i = 1; i < MAX_COLUMN+1; i++)
         {
             //fprintf(stderr, "here is this %d\n", (uchar)(*(temp-1 + i)) );
             transfer(fd, 0, 0, i, (uchar)(*(temp-1 + i)) );
@@ -191,7 +197,7 @@ void setLeftMatrix(int fd, char dictInt)
     }
 }
 
-void setRightMatrix(int fd, char dictInt)
+void setRightMatrix(int fd, uchar dictInt)
 {
     int i;
     uchar* temp = charDict( dictInt );
@@ -204,60 +210,55 @@ void setRightMatrix(int fd, char dictInt)
     }
 }
 
-void setBothMatrices(int fd, char left, char right)
+void setBothMatrices(uchar left, uchar right)
 {
-    setLeftMatrix( fd, left );
-    setRightMatrix( fd, right );
-}
-
-int main() {
-    uchar i , j;
-    int ret = 0;
     int fd;
 
     fd = open(device_spidev0_0, O_RDWR);
     if (fd < 0) {
-        printf("can't open /dev/spidev0.0\nTry /dev/spidev1.0\n");
+        //printf("can't open /dev/spidev0.0\nTry /dev/spidev1.0\n");
         fd = open(device_spidev1_0, O_RDWR);
         if (fd < 0)
             pabort("can't open /dev/spidev1.0");
     }
+    
+    setLeftMatrix( fd, left );
+    setRightMatrix( fd, right );
 
-    /* SPI mode */
-    ret = ioctl(fd, SPI_IOC_WR_MODE, &mode);
-    if (ret == -1)
-        pabort("can't set SPI mode");
+    close(fd);
+}
 
-    ret = ioctl(fd, SPI_IOC_RD_MODE, &mode);
-    if (ret == -1)
-        pabort("can't get SPI mode");
+void cleanLeftMatrix(int fd)
+{
+    int i;
+    setLeftMatrix(fd, '_');
+}
 
-    /* bits per word */
-    ret = ioctl(fd, SPI_IOC_WR_BITS_PER_WORD, &bits);
-    if (ret == -1)
-        pabort("can't set bits per word");
+void cleanRightMatrix(int fd)
+{
+    int i;
+    for(i = 0; i < MAX_COLUMN; i++)
+    {
+        transfer(fd, i+1, blank[i], 0, 0);
+    }
 
-    ret = ioctl(fd, SPI_IOC_RD_BITS_PER_WORD, &bits);
-    if (ret == -1)
-        pabort("can't get bits per word");
+}
 
-    /* max speed hz */
-    ret = ioctl(fd, SPI_IOC_WR_MAX_SPEED_HZ, &speed);
-    if (ret == -1)
-        pabort("can't set max speed Hz");
+void cleanBothMatrices()
+{
+    int fd;
 
-    ret = ioctl(fd, SPI_IOC_RD_MAX_SPEED_HZ, &speed);
-    if (ret == -1)
-        pabort("can't get max speed Hz");
-
-    printf("SPI mode: %d\n", mode);
-    printf("bits per word: %d\n", bits);
-    printf("max speed: %d Hz (%d KHz)\n", speed, speed/1000);
-
-    setBothMatrices(fd, 'e', 'f');
+    fd = open(device_spidev0_0, O_RDWR);
+    if (fd < 0) {
+        //printf("can't open /dev/spidev0.0\nTry /dev/spidev1.0\n");
+        fd = open(device_spidev1_0, O_RDWR);
+        if (fd < 0)
+            pabort("can't open /dev/spidev1.0");
+    }
+    
+    cleanLeftMatrix( fd );
+    cleanRightMatrix( fd );
 
     close(fd);
 
-    return ret;
 }
-
