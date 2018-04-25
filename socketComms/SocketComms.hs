@@ -38,7 +38,7 @@ portListen = withSocketsDo $ do
           sendAll conn msg
           talk conn
 
-portSend :: String -> String -> IO ()
+portSend :: String -> S.ByteString -> IO ()
 portSend myIP myMsg = withSocketsDo $ do
     addr <- resolve myIP "3000"
     E.bracket (open addr) close talk
@@ -52,7 +52,7 @@ portSend myIP myMsg = withSocketsDo $ do
         connect sock $ addrAddress addr
         return sock
     talk sock = do
-        myInt <- send sock myMsg
+        myInt <- send sock $ C.unpack myMsg
         putStrLn $ show myInt
         msg <- recv sock 1024
         putStr "Received: "
