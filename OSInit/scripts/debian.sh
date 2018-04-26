@@ -1,3 +1,7 @@
+#== Michael Neises
+#== 25/4/18
+#== set my system up so that it isn't totally ugly
+
 #do some updates
 sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install cmus git i3 vim zsh
@@ -9,17 +13,18 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 chsh -s $(which zsh)
 
 #create a projects directory
-mkdir ~/Documents/projects && cd ~/Documents/projects
+mkdir ~/Documents/projects
 
 #clone ideal-robot into the projects directory
-git clone https://github.com/neisesMike/ideal-robot.git
-export ideal=~/Documents/projects/ideal-robot
+cd ~/Documents/projects && git clone https://github.com/neisesMike/ideal-robot.git
+export ideal=$HOME/Documents/projects/ideal-robot
 
 #copy config files
+chmod o+x ${ideal}/OSInit/configFiles
 cd ${ideal}/OSInit/configFiles && cp -r .gitconfig .i3 .vimrc .zshrc ~/
 
 #copy music
 cd ${ideal}/OSInit/tunes && cp -r * ~/Music/
 
 #get summa dat yung reboot action
-#sudo reboot
+sudo reboot
