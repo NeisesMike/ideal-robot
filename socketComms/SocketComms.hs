@@ -1,4 +1,6 @@
--- Echo server program
+-- This module was adapted from the examples found on the network.socket documentation page on hackage.haskell.org
+-- Michael Neises
+
 module SocketComms where
 
 import Control.Concurrent (forkFinally)
