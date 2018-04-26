@@ -13,15 +13,13 @@ mkdir ~/Documents/projects && cd ~/Documents/projects
 
 #clone ideal-robot into the projects directory
 git clone https://github.com/neisesMike/ideal-robot.git
-ideal = '~/Documents/projects/ideal'
+export ideal=~/Documents/projects/ideal
 
 #copy config files
-cd ${ideal}'/OSInit/configFiles'
-cp -r .gitconfig .i3 .vimrc .zshrc ~/
+cd ${ideal}'/OSInit/configFiles' && cp -r .gitconfig .i3 .vimrc .zshrc ~/
 
 #copy music
-cd ${ideal}'/OSInit/tunes'
-cp -r * ~/Music/
+cd ${ideal}'/OSInit/tunes' && cp -r * ~/Music/
 
 #get summa dat yung reboot action
 #sudo reboot
