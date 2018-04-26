@@ -26,5 +26,13 @@ cd ${ideal}/OSInit/configFiles && cp -r .gitconfig .i3 .vimrc .zshrc ~/
 #copy music
 cd ${ideal}/OSInit/tunes && cp -r * ~/Music/
 
-#get summa dat yung reboot action
-sudo reboot
+#
+echo "===================================================="
+echo "Please verify the configuration options in ~/.zshrc!"
+echo "===================================================="
+echo ""
+echo "===================================================="
+echo "A reboot is necessary to load the window manager i3."
+echo "===================================================="
+
+
