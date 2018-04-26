@@ -43,7 +43,7 @@ export srctree=/home/$USER/Documents/projects/sel4tuts
 #synclient TapButton1=1 TapButton2=3 TapButton3=2
 
 # OPAM configuration
-. /home/michael/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+. /home/$USER/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
