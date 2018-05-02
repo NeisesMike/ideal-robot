@@ -1,9 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/home/$USER/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/$USER/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -32,10 +32,13 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 export EDITOR="/usr/bin/vim"
 
+# added by Anaconda3 installer
+export PATH="/home/michael/Documents/libraries/python/anaconda3/bin:$PATH"
+
 # sel4 exports
-export SEL4_COMMON=/home/$USER/Documents/projects/sel4tuts/projects/tools/common-tool
-export SOURCE_DIR=/home/$USER/Documents/projects/sel4tuts
-export srctree=/home/$USER/Documents/projects/sel4tuts
+export SEL4_COMMON=$HOME/Documents/projects/sel4tuts/projects/tools/common-tool
+export SOURCE_DIR=$HOME/Documents/projects/sel4tuts
+export srctree=$HOME/Documents/projects/sel4tuts
 
 #export sel4 common path
 
