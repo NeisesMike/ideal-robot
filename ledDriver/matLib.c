@@ -180,6 +180,7 @@ uchar* charDict( char aChar )
         case '?' : return lChars[37]; break;
         case ')' : return lChars[38]; break;
         case '(' : return lChars[39]; break;
+        default : return NULL; break;
     }
 }
 
