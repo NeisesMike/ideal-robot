@@ -1,0 +1,8 @@
+# r+ read/write
+# rb read binary
+# ab+ read/append binary
+thisFile = open(fileName, a)
+
+# insert some code here
+
+thisFile.close()

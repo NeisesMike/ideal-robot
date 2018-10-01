@@ -1,0 +1,2 @@
+# if not pass in numBytes, then try read whole file
+thisString = thisFile.read(numBytes);
