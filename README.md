@@ -1,16 +1,36 @@
 # ideal-robot
-fun things, necessarily no pressure
+> fun things, necessarily no pressure
 
-# project ideas
-text adventure
+## project ideas
 
-rasp pi
+### raspberry pi
+> micromanager
+> * control lights via buttons
+> * output current logs via led screen
+> * output ding via speaker
 
--> temp/humidity sensor
+> botany bot
+> * control blinds by sunrise and sunset
+> * light sensor to verify blind-control success
+> * monitor soil moisture
+> * dispense water via solenoid valve
 
--> light fixture controller (electrical actuation)
+> reptile keeper
+> * monitor temperature: control lamps via relay
+> * monitor humidity: control via relay to atomizer
 
-networking
+> smart lamps
+> * turn on at certain times of day
+> * listen for hotword via google/amazon natural language?
 
-data structures
+> networking
+> * let bots mingle over wifi
+> * chirp when all last measurements were prime numbers?
 
+> text adventure
+> * randomly generate objects: rooms, items, npcs
+> * cleverly generate implications: if key then need lock later
+
+> data structures
+> * network storage: logs, media
+> * packets for sharing
