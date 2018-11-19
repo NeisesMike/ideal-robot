@@ -1,5 +1,5 @@
 #== Michael Neises
-#== 25/4/18
+#== 18 november 18
 #== set the system up so that it isn't totally ugly
 
 #get zsh and set it as the default shell
@@ -9,7 +9,7 @@ chsh -s $(which zsh)
 
 #do some updates
 sudo apt-get update && sudo apt-get upgrade
-sudo apt-get install cmus git i3 vim evince retext
+sudo apt-get install git vim python-pip python-rpi.gpio
 sudo apt-get autoclean; sudo apt-get autoremove
 
 #get oh-my-zsh
@@ -24,10 +24,7 @@ export ideal=$HOME/Documents/projects/ideal-robot
 
 #copy config files
 chmod o+x ${ideal}/OSInit/configFiles
-cd ${ideal}/OSInit/configFiles && cp -r .gitconfig .i3 .vimrc .zshrc ~/
-
-#copy music
-cd ${ideal}/OSInit/tunes && cp -r * ~/Music/
+cd ${ideal}/OSInit/configFiles && cp -r .gitconfig .vimrc .zshrc ~/
 
 #output some congratulatory message
 
@@ -46,9 +43,4 @@ echo "                                 "
 echo "===================================================="
 echo "Please verify the configuration options in ~/.zshrc!"
 echo "===================================================="
-echo "                                                    "
-echo "===================================================="
-echo "A reboot is necessary to load the window manager i3."
-echo "===================================================="
-
 
