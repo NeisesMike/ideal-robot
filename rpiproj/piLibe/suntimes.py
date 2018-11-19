@@ -3,6 +3,7 @@
 
 import ephem
 import datetime
+import math
 
 Lawrence = ephem.Observer()
 Lawrence.lat = '38.9717'
@@ -27,12 +28,20 @@ def hasSunRisen( sunrise ):
 def hasSunSet( sunset ):
     return( getDate() >= sunset )
 
-# -12 degrees for nautical twilight
 def isSunOut():
+    now = getDate()
+    lastRise = getLastSunrise()
+    shutoff = ephem.Date( lastRise + 12*ephem.hour )
+    return( lastRise < now and now < shutoff )
+
+# -12 degrees for nautical twilight
+def isSunOutOld():
     s = ephem.Sun()
     larry = ephem.city( 'Houston' )
     s.compute( larry )
     twilight = -12 * ephem.degree
+    print( s.alt )
+    print( math.radians( twilight ) )
     return( s.alt > twilight )
 
 def isLampTime():
