@@ -4,12 +4,12 @@
 
 #get zsh and set it as the default shell
 ##we do this here so that all password requests are grouped at the beginning
-sudo apt-get install zsh
+sudo apt-get -y install zsh
 chsh -s $(which zsh)
 
 #do some updates
 sudo apt-get update && sudo apt-get upgrade
-sudo apt-get install git vim python-pip python-rpi.gpio
+sudo apt-get -y install git vim python-pip python-rpi.gpio
 sudo apt-get autoclean; sudo apt-get autoremove
 
 #get oh-my-zsh
