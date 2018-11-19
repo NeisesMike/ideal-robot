@@ -1,5 +1,5 @@
 # mike
-# 18 November 2018
+# 19 November 2018
 
 import piLibe.hygrometer
 import piLibe.relay
@@ -22,10 +22,6 @@ piLibe.hygrometer.initHygrometer( hygrometerChannel )
 piLibe.relay.initRelay( plantRelayChannel )
 piLibe.relay.initRelay( dmitriRelayChannel )
 
-rising = piLibe.suntimes.getSunrise() 
-setting = piLibe.suntimes.getSunset()
-shutoff = piLibe.suntimes.getShutOffTime( rising )
-
 #=====================================
 # load the hygrometer callback
 #=====================================
@@ -44,20 +40,16 @@ piLibe.relay.enableFor( plantRelayChannel, 1 )
 piLibe.relay.enableFor( dmitriRelayChannel, 1 )
 
 while True:
-    if( piLibe.suntimes.isSunrise( rising ) ):
-        piLibe.relay.enable( plantRelayChannel )
-        piLibe.relay.enable( dmitriRelayChannel )
-        rising = piLibe.suntimes.getSunrise()
 
-    elif( piLibe.suntimes.isSunset( setting) ):
-        piLibe.relay.disble( dmitriRelayChannel )
-        setting = piLibe.suntimes.getSunset()
-
-    elif( piLibe.suntimes.isShutOffTime( shutoff ) ):
-        piLibe.relay.disable( plantRelayChannel )
-        shutoff = piLibe.suntimes.getShutOffTime()
-
+    if( piLibe.suntimes.isSunOut() ):
+        piLibe.relay.enable( plantRelayChannel ):
     else:
-        pass
-    time.sleep(600)
+        piLibe.relay.disable( plantRelayChannel ):
+        
+    if( piLibe.suntimes.isLampTime() ):
+        piLibe.relay.enable( dmitriRelayChannel ):
+    else:
+        piLibe.relay.disable( dmitriRelayChannel )
+
+    time.sleep(60)
 

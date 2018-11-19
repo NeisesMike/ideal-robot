@@ -1,5 +1,5 @@
 # mike
-# 18 november 2018
+# 19 november 2018
 
 import ephem
 import datetime
@@ -9,29 +9,39 @@ Lawrence.lat = '38.9717'
 Lawrence.lon = '-95.2353'
 Lawrence.elevation = 866
 
-sun = ephem.Sun()
-
 def getDate():
     return( Lawrence.date )
 
 def getSunrise():
-    return( Lawrence.next_rising( sun ) )
+    return( Lawrence.next_rising( ephem.Sun() ) )
+
+def getLastSunrise():
+    return( Lawrence.previous_rising( ephem.Sun() ) )
 
 def getSunset():
-    return( Lawrence.next_setting( sun ) )
+    return( Lawrence.next_setting( ephem.Sun() ) )
 
-def isSunrise( sunrise ):
+def hasSunRisen( sunrise ):
     return( getDate() >= sunrise )
 
-def isSunset( sunset ):
+def hasSunSet( sunset ):
     return( getDate() >= sunset )
 
-# INPUT ephem.Date
-# OUTPUT python datetime
-def getShutOffTime( sunrise ):
-    return( ephem.localtime( sunrise ) + datetime.timedelta( hours=12 ) )
+# -12 degrees for nautical twilight
+def isSunOut():
+    s = ephem.Sun()
+    larry = ephem.city( 'Houston' )
+    s.compute( larry )
+    twilight = -12 * ephem.degree
+    return( s.alt > twilight )
 
-# INPUT python datetime
-def isShutOffTime( shutoff ):
-    return( shutoff < datetime.datetime.now() )
+def isLampTime():
+    now = getDate()
+    lastRise = getLastSunrise()
+    shutoff = ephem.Date( lastRise + 12*ephem.hour )
+    return( lastRise < now and now < shutoff )
 
+print( "sun's out" if isSunOut() else "sun's down" )
+print( getDate() )
+print( getSunset() )
+print( "lamp's on" if isLampTime() else "lamp's off" )

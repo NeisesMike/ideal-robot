@@ -21,3 +21,5 @@ def enable( channel ):
 def disable( channel ):
     GPIO.output( channel, GPIO.HIGH )
 
+def isEnabled( channel ):
+    return( m_enabled )
