@@ -2,6 +2,7 @@
 # 18 november 2018
 
 import ephem
+import datetime
 
 Lawrence = ephem.Observer()
 Lawrence.lat = '38.9717'
@@ -20,25 +21,17 @@ def getSunset():
     return( Lawrence.next_setting( sun ) )
 
 def isSunrise( sunrise ):
-    now = getDate().tuple()
-    rise = sunrise.tuple()
-    arg1a = now[4]
-    arg1b = rise[4]
-    if( arg1a >= arg1b ):
-        arg2a = now[5]
-        arg2b = rise[5]
-        if( arg2a >= arg2b ):
-            return True
-    return False
+    return( getDate() >= sunrise )
 
 def isSunset( sunset ):
-    now = getDate().tuple()
-    setting = sunset.tuple()
-    arg1a = now[4]
-    arg1b = setting[4]
-    if( arg1a >= arg1b ):
-        arg2a = now[5]
-        arg2b = setting[5]
-        if( arg2a >= arg2b ):
-            return True
-    return False
+    return( getDate() >= sunset )
+
+# INPUT ephem.Date
+# OUTPUT python datetime
+def getShutOffTime( sunrise ):
+    return( ephem.localtime( sunrise ) + datetime.timedelta( hours=12 ) )
+
+# INPUT python datetime
+def isShutOffTime( shutoff ):
+    return( shutoff < datetime.datetime.now() )
+
