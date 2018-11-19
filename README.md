@@ -12,6 +12,7 @@
 > botany bot
 > * control blinds by sunrise and sunset
 > * light sensor to verify blind-control success
+> * or just control grow lamp via relay
 > * monitor soil moisture
 > * dispense water via solenoid valve
 
