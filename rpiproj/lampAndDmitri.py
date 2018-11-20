@@ -7,6 +7,7 @@ import piLibe.solenoidValve
 import piLibe.suntimes
 import time
 import RPi.GPIO as GPIO
+import piLibe.utils.logger
 
 #=====================================
 # initializations
@@ -40,6 +41,8 @@ piLibe.relay.enableFor( plantRelayChannel, 1 )
 piLibe.relay.enableFor( dmitriRelayChannel, 1 )
 
 while True:
+    
+    piLibe.utils.logger.simpleLog( "TICK lampAndDmitri.py" )
 
     if( piLibe.suntimes.isSunOut() ):
         piLibe.relay.enable( plantRelayChannel )
