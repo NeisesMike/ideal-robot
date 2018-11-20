@@ -22,35 +22,9 @@ def getLastSunrise():
 def getSunset():
     return( Lawrence.next_setting( ephem.Sun() ) )
 
-def hasSunRisen( sunrise ):
-    return( getDate() >= sunrise )
-
-def hasSunSet( sunset ):
-    return( getDate() >= sunset )
-
 def isSunOut():
-    now = getDate()
-    lastRise = getLastSunrise()
-    shutoff = ephem.Date( lastRise + 12*ephem.hour )
-    return( lastRise < now and now < shutoff )
-
-# -12 degrees for nautical twilight
-def isSunOutOld():
-    s = ephem.Sun()
-    larry = ephem.city( 'Houston' )
-    s.compute( larry )
-    twilight = -12 * ephem.degree
-    print( s.alt )
-    print( math.radians( twilight ) )
-    return( s.alt > twilight )
+    return( getSunset() < getSunrise() )
 
 def isLampTime():
-    now = getDate()
-    lastRise = getLastSunrise()
-    shutoff = ephem.Date( lastRise + 12*ephem.hour )
-    return( lastRise < now and now < shutoff )
+    return( getDate() < ephem.Date( getLastSunrise() + 12 * ephem.hour ) )
 
-print( "sun's out" if isSunOut() else "sun's down" )
-print( getDate() )
-print( getSunset() )
-print( "lamp's on" if isLampTime() else "lamp's off" )

@@ -42,12 +42,12 @@ piLibe.relay.enableFor( dmitriRelayChannel, 1 )
 while True:
 
     if( piLibe.suntimes.isSunOut() ):
-        piLibe.relay.enable( plantRelayChannel ):
+        piLibe.relay.enable( plantRelayChannel )
     else:
-        piLibe.relay.disable( plantRelayChannel ):
+        piLibe.relay.disable( plantRelayChannel )
         
     if( piLibe.suntimes.isLampTime() ):
-        piLibe.relay.enable( dmitriRelayChannel ):
+        piLibe.relay.enable( dmitriRelayChannel )
     else:
         piLibe.relay.disable( dmitriRelayChannel )
 
