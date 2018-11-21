@@ -4,6 +4,7 @@
 import ephem
 import datetime
 import math
+import utils.logger
 
 Lawrence = ephem.Observer()
 Lawrence.lat = '38.9717'
@@ -23,8 +24,12 @@ def getSunset():
     return( Lawrence.next_setting( ephem.Sun() ) )
 
 def isSunOut():
-    return( getSunset() < getSunrise() )
+    sunout = getSunset() < getSunrise()
+    utils.logger.piLog( "sunlog", "sun's out" if sunout else "sun's down" )
+    return( sunout )
 
 def isLampTime():
-    return( getDate() < ephem.Date( getLastSunrise() + 12 * ephem.hour ) )
+    lampon = ( getDate() < ephem.Date( getLastSunrise() + 12 * ephem.hour ) )
+    utils.logger.piLog( "lamplog", "lamp's on" if lampon else "lamp's off" )
+    return( lampon )
 

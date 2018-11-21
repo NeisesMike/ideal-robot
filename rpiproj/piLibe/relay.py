@@ -13,6 +13,8 @@ def initRelay( channel ):
     utils.logger.simpleLog( "Relay on channel {} initialized".format(channel) )
 
 def enableFor( channel, aTime ):
+    if( GPIO.input(channel) == 0 ):
+        return
     GPIO.output( channel, GPIO.LOW )
     utils.logger.simpleLog( "Relay at {} enabled".format(channel) )
     time.sleep( aTime )
