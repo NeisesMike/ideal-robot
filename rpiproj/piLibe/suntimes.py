@@ -16,19 +16,20 @@ def getDate():
     return( Lawrence.date )
 
 def getSunrise():
+    Lawrence.date= ephem.now()
     return( Lawrence.next_rising( ephem.Sun() ) )
 
 def getLastSunrise():
+    Lawrence.date= ephem.now()
     return( Lawrence.previous_rising( ephem.Sun() ) )
 
 def getSunset():
+    Lawrence.date= ephem.now()
     return( Lawrence.next_setting( ephem.Sun() ) )
 
 def isSunOut():
-    Lawrence.date= ephem.now()
     return( getSunset() < getSunrise() )
 
 def isLampTime():
-    Lawrence.date= ephem.now()
     return( getDate() < ephem.Date( getLastSunrise() + 12 * ephem.hour ) )
 
