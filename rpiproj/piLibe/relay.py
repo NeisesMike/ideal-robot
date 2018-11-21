@@ -33,3 +33,12 @@ def disable( channel ):
     GPIO.output( channel, GPIO.HIGH )
     utils.logger.simpleLog( "Relay at {} disabled".format(channel) )
 
+def blink( channel ):
+    if( GPIO.input(channel) == 1 ):
+        enableFor( channel, 1 )
+    else:
+        disable( channel )
+        time.sleep( 1 )
+        enable( channel )
+    utils.logger.simpleLog( "Relay at {} blinked!".format(channel) )
+

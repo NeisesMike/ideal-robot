@@ -11,20 +11,23 @@ Lawrence.lat = '38.9717'
 Lawrence.lon = '-95.2353'
 Lawrence.elevation = 866
 
-def getDate():
+def updateDate():
     Lawrence.date = ephem.now()
+
+def getDate():
+    updateDate()
     return( Lawrence.date )
 
 def getSunrise():
-    Lawrence.date= ephem.now()
+    updateDate()
     return( Lawrence.next_rising( ephem.Sun() ) )
 
 def getLastSunrise():
-    Lawrence.date= ephem.now()
+    updateDate()
     return( Lawrence.previous_rising( ephem.Sun() ) )
 
 def getSunset():
-    Lawrence.date= ephem.now()
+    updateDate()
     return( Lawrence.next_setting( ephem.Sun() ) )
 
 def isSunOut():
