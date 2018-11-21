@@ -56,7 +56,7 @@ piLibe.relay.enableFor( dmitriRelayChannel, 1 )
 
 while True:
     
-    piLibe.utils.logger.simpleLog( "TICK lampAndDmitri.py" )
+    piLibe.utils.logger.simpleLog( "==TICK== lampAndDmitri.py" )
 
     if( piLibe.suntimes.isSunOut() ):
         piLibe.relay.enable( dmitriRelayChannel )
@@ -68,5 +68,5 @@ while True:
     else:
         piLibe.relay.disable( plantRelayChannel )
 
-    time.sleep(60)
+    time.sleep(600)
 
