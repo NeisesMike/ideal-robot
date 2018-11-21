@@ -13,8 +13,8 @@ import piLibe.utils.logger
 # initializations
 #=====================================
 
-valveChannel = 22
-hygrometerChannel = 23
+hygrometerChannel = 22
+valveChannel = 23
 plantRelayChannel = 24
 dmitriRelayChannel = 25
 
@@ -27,8 +27,22 @@ piLibe.relay.initRelay( dmitriRelayChannel )
 # load the hygrometer callback
 #=====================================
 
+def dispenseWater( valveChannel, hygroChannel, attempt ):
+    if( attempt > 5 ):
+        print( "I must be out of water. Stopping." )
+        piLibe.utils.logger.simpleLog( "VALVE ON CHANNEL {} IS OUT OF WATER".format(valveChannel) )
+    elif( piLibe.hygrometer.isWater(hygroChannel) ):
+        print( "Water detected!" )
+        piLibe.solenoidValve.close( valveChannel )
+    else:
+        print( "No water detected! Remedying...")
+        piLibe.solenoidValve.open( valveChannel )
+        time.sleep( 5 )
+        attempt += 1
+        dispenseWater( valveChannel, hygroChannel, attempt )
+
 def tryWater( channel ):
-    piLibe.solenoidValve.dispenseWater( valveChannel, hygrometerChannel, 0 )
+    dispenseWater( valveChannel, hygrometerChannel, 0 )
 
 piLibe.hygrometer.addCallback( hygrometerChannel, tryWater )
 
