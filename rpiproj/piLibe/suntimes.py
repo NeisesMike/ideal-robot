@@ -4,6 +4,7 @@
 import ephem
 import datetime
 import math
+import utils.logger
 
 Lawrence = ephem.Observer()
 Lawrence.lat = '38.9717'
