@@ -1,0 +1,47 @@
+# experimental 
+
+alias calc='awk "BEGIN{print $@}"'
+alias testo='echo $@'
+
+# mike's utility stuff
+
+alias get='locate '$1' | xargs cat > '$1
+alias here='cd .'
+alias mamake='reset; make && clear && ./main'
+alias recipe='cp /home/michael/Documents/personal/ThePursuitOfHeinrich/journal/advancement/works/recipes/rubric .'
+alias zshenv='sudo vim /etc/zsh/zshenv'
+alias zshalias='vim /home/michael/.zsh_aliases'
+alias countme='ls -1 | wc -l'
+alias newlatex='cp ~/Templates/latex.tex .'
+alias lsize='ls -l --si'
+alias netscan='sudo nmap -sP 192.168.1.0/24'
+alias hyperlink='cp ~/Templates/hyperlink.html .'
+alias screenshot='streamer -f jpeg -o image.jpeg'
+alias homeconnect='sudo ifconfig wlp4s0 up && sudo iwconfig wlp4s0 essid ATT22cUp3E key s:58n7=rgt4maf && sudo dhclient wlp4s0'
+alias countme='ls -l | wc -l'
+alias keepass='keepass2 ~/Documents/personal/ThePursuitOfHeinrich/journal/2019/NewDatabase.kdbx'
+
+# noise makers
+alias beep='paplay /usr/share/sounds/freedesktop/stereo/complete.oga'
+alias beep2='paplay /usr/share/sounds/freedesktop/stereo/window-question.oga'
+alias beep3='paplay /usr/share/sounds/gnome/default/alerts/glass.ogg'
+alias beep4='paplay /usr/share/sounds/gnome/default/alerts/sonar.ogg'
+alias beep5='paplay /usr/share/sounds/ubuntu/notifications/Rhodes.ogg'
+alias beep6='paplay /usr/share/sounds/speech-dispatcher/test.wav'
+alias ring="paplay /usr/share/sounds/ubuntu/ringtones/Sam\'s\ Song.ogg"
+alias ring2="paplay /usr/share/sounds/ubuntu/ringtones/Counterpoint.ogg"
+alias ring3="paplay /usr/share/sounds/ubuntu/ringtones/Marimbach.ogg"
+
+# mike's other stuff
+alias minecraft='cd ~/bin/minecraft && ./launcher &; wd ..'
+
+# research stuff
+
+alias ccoqc='coqc `cat /home/michael/Downloads/vst/_CoqProject-export` ' $1
+alias ccoqide='coqide `cat /home/michael/Downloads/vst/.loadpath-export`' $1
+alias clightgen='/home/michael/Downloads/CompCert/clightgen -normalize ' $1
+alias decrypt='openssl des3 -d < '$1
+alias encrypt='openssl des3 <' $1
+alias packcpio='find . -print0 | fakeroot cpio --null -H newc -o > ../rootfs.cpio'
+alias runqemu='qemu-system-i386 -nographic -m 512 -cpu Haswell -kernel images/kernel-ia32-pc99 -initrd images/capdl-loader-experimental-image-ia32-pc99'
+
