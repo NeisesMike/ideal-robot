@@ -12,6 +12,7 @@ def initButton( channel ):
     utils.logger.simpleLog( "Button on channel {} initialized".format(channel) )
 
 def isPressed( channel ):
+    utils.logger.simpleLog( "Check for button press on channel {}".format(channel) )
     return( not GPIO.input( channel ) )
 
 # don't callback twice in .3 seconds
