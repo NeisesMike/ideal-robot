@@ -15,13 +15,12 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    #cabal
     common-aliases
     git
     history
     #httpie
     last-working-dir
-    #pip
+    pip
     sudo
     wd
 )
@@ -29,16 +28,10 @@ plugins=(
 # load zsh
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-export EDITOR="/usr/bin/vim"
-
-# added by Anaconda3 installer
-export PATH="/home/michael/Documents/libraries/python/anaconda3/bin:$PATH"
-
 # sel4 exports
-export SEL4_COMMON=$HOME/Documents/projects/sel4tuts/projects/tools/common-tool
-export SOURCE_DIR=$HOME/Documents/projects/sel4tuts
-export srctree=$HOME/Documents/projects/sel4tuts
+#export SEL4_COMMON=$HOME/Documents/projects/sel4tuts/projects/tools/common-tool
+#export SOURCE_DIR=$HOME/Documents/projects/sel4tuts
+#export srctree=$HOME/Documents/projects/sel4tuts
 
 #export sel4 common path
 
@@ -77,4 +70,21 @@ HIST_STAMPS="dd.mm.yyyy"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+source ~/.zsh_aliases
+
+#eval $(thefuck --alias)
+
+# connect to home wifi
+#sudo ifconfig wlp4s0 up
+#sudo dhclient wlp4s0
+
+sshpi(){
+    ssh pi@192.168.1."$1"
+}
+
+sshpireset(){
+    ssh-keygen -f "/home/michael/.ssh/known_hosts" -R 192.168.1."$1"
+    sshpi "$1"
+}
 
