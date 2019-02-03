@@ -3,6 +3,7 @@
 
 import piLibe.relay
 import piLibe.suntimes
+import piLibe.button
 import time
 import RPi.GPIO as GPIO
 
@@ -15,9 +16,6 @@ buttonChannel = 25
 
 piLibe.relay.initRelay( relayChannel )
 piLibe.button.initButton( buttonChannel )
-
-rising = piLibe.suntimes.getSunrise() 
-shutoff = piLibe.suntimes.getShutOffTime( rising )
 
 #=====================================
 # load the button callback
@@ -36,13 +34,12 @@ piLibe.button.addCallback( buttonChannel, turnOffLamp )
 piLibe.relay.enable( relayChannel )
 
 while True:
-    if( piLibe.suntimes.isSunrise( rising ) ):
-        piLibe.relay.enable( relayChannel )
-        rising = piLibe.suntimes.getSunrise()
-    elif( piLibe.suntimes.isShutOffTime( shutoff ) ):
-        piLibe.relay.disable( relayChannel )
-        shutoff = piLibe.suntimes.getShutOffTime()
-    else:
-        pass
-    time.sleep(600)
+    
+    piLibe.utils.logger.simpleLog( "==TICK== sunrise.py" )
 
+    if( piLibe.suntimes.isSunOut() ):
+        piLibe.relay.enable( relayChannel )
+    else:
+        piLibe.relay.disable( relayChannel )
+        
+    time.sleep(600)
