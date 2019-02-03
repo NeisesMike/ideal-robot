@@ -28,7 +28,7 @@ piLibe.relay.initRelay( dmitriRelayChannel )
 #=====================================
 
 def dispenseWater( valveChannel, hygroChannel, attempt ):
-    if( attempt > 5 ):
+    if( attempt > 3 ):
         print( "I must be out of water. Stopping." )
         piLibe.utils.logger.simpleLog( "VALVE ON CHANNEL {} IS OUT OF WATER".format(valveChannel) )
     elif( piLibe.hygrometer.isWater(hygroChannel) ):
@@ -37,7 +37,7 @@ def dispenseWater( valveChannel, hygroChannel, attempt ):
     else:
         print( "No water detected! Remedying...")
         piLibe.solenoidValve.open( valveChannel )
-        time.sleep( 5 )
+        time.sleep( 10 )
         attempt += 1
         dispenseWater( valveChannel, hygroChannel, attempt )
 
