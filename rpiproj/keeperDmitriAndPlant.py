@@ -17,6 +17,9 @@ hygrometerChannel = 22
 valveChannel = 23
 plantRelayChannel = 24
 dmitriRelayChannel = 25
+# How many minutes to wait between hygrometer activations
+## currently we wait six hours
+waterCheckInterval = 360
 
 piLibe.solenoidValve.initValve( valveChannel )
 piLibe.hygrometer.initHygrometer( hygrometerChannel )
@@ -44,7 +47,7 @@ def dispenseWater( valveChannel, hygroChannel, attempt ):
 def tryWater( channel ):
     dispenseWater( valveChannel, hygrometerChannel, 0 )
 
-piLibe.hygrometer.addCallback( hygrometerChannel, tryWater )
+piLibe.hygrometer.addCallback( hygrometerChannel, tryWater, waterCheckInterval )
 
 #=====================================
 # main
