@@ -30,7 +30,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 #background image
-exec --no-startup-id feh --bg-center ~/Pictures/Wallpapers/porno.jpg
+#exec --no-startup-id feh --bg-center ~/Pictures/Wallpapers/porno.jpg
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -43,11 +43,13 @@ bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 #MIKE'S ADDITIONS
-exec feh --bg-center ~/Pictures/porno.jpg
-bindsym $mod+b exec google-chrome
-bindsym $mod+c exec gnome-control-center
+exec feh --bg-center ~/Pictures/edward.png
+bindsym $mod+b exec firefox
+bindsym $mod+c exec mate-control-center
 bindsym $mod+m exec nautilus
 bindsym $mod+g exec gedit
+bindsym $mod+Shift+l exec i3lock -i /home/michael/Pictures/walle.png -c 000000
+
 
 # change focus
 bindsym $mod+j focus left
@@ -62,10 +64,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+#bindsym $mod+Shift+j move left
+#bindsym $mod+Shift+k move down
+#bindsym $mod+Shift+l move up
+#bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
