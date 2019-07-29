@@ -9,7 +9,7 @@ chsh -s $(which zsh)
 
 #do some updates
 sudo apt-get update && sudo apt-get upgrade
-sudo apt-get install cmus git i3 vim evince retext
+sudo apt-get install cmus git i3 vim evince retext feh
 sudo apt-get autoclean; sudo apt-get autoremove
 
 #get oh-my-zsh
