@@ -1,0 +1,11 @@
+{
+  "name": "maya",
+  "version": "1.0.0",
+  "description": "convert base10 to base20",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "mike neis",
+  "license": "ISC"
+}
