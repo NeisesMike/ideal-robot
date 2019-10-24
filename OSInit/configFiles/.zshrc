@@ -18,9 +18,12 @@ ZSH_THEME="wedisagree"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     common-aliases
+    emoji
     git
+    #globalias
     history
     last-working-dir
+    nmap
     pip
     sudo
     wd
@@ -28,13 +31,6 @@ plugins=(
 
 # load zsh
 source $ZSH/oh-my-zsh.sh
-
-# sel4 exports
-#export SEL4_COMMON=$HOME/Documents/projects/sel4tuts/projects/tools/common-tool
-#export SOURCE_DIR=$HOME/Documents/projects/sel4tuts
-#export srctree=$HOME/Documents/projects/sel4tuts
-
-#export sel4 common path
 
 #lenovo ideapad y500 -> enable tap = mouse click
 #synclient TapButton1=1 TapButton2=3 TapButton3=2
@@ -93,3 +89,10 @@ sshpireset(){
 synclient TapButton1=1 TapButton2=3 TapButton3=2
 
 eval "$(ssh-agent -s)" > /dev/null
+
+# conda into path
+export PATH="$PATH:$HOME/.miniconda3/bin"
+
+# disable beep
+# why would anyone ever want this
+unsetopt BEEP
