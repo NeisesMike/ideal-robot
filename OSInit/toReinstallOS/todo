@@ -1,0 +1,16 @@
+prepare a bootable usb stick with debian
+
+boot to usb stick
+
+wipe the laptop drive and partition as needed
+
+install debian
+
+connect the external hard drive
+
+copy the home directory back to the machine
+
+`apt-get install apt-clone` && `apt-clone restore foo.apt-clone.tar.gz`
+
+done
+

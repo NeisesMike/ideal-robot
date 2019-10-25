@@ -1,0 +1,16 @@
+To find a network essid
+    `sudo iwlist scan`
+
+edit /etc/wpa_supplicant.conf by
+"""
+network={
+    ssid="name"
+    psk="password"
+}
+"""
+
+sudo ip link set wlp4s0 down
+sudo ip link set wlp4s0 up
+sudo wpa_supplicant -B -iwlp4s0 -c /etc/wpa_supplicant.conf -Dnl80211,wext
+sudo dhclient wlp4s0
+
