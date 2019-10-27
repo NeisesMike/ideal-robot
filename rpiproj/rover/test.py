@@ -1,6 +1,7 @@
 #!/usr/local/bin/python3
 
 from picar import back_wheels, front_wheels
+from .driver import camera, stream
 import picar
 from time import sleep
 
