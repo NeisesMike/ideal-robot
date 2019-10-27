@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from picar import back_wheels, front_wheels
-from .driver import camera, stream
+#from .driver import camera, stream
 import picar
 from time import sleep
 
@@ -9,11 +9,11 @@ from time import sleep
 db_file = "/home/pi/SunFounder_PiCar-V/remote_control/remote_control/driver/config"
 fw = front_wheels.Front_Wheels(debug=False, db=db_file)
 bw = back_wheels.Back_Wheels(debug=False, db=db_file)
-cam = camera.Camera(debug=False, db=db_file)
+#cam = camera.Camera(debug=False, db=db_file)
 
 fw.ready()
 bw.ready()
-cam.ready()
+#cam.ready()
 
 SPEED = 60
 bw_status = 0
