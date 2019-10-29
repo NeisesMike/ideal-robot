@@ -1,0 +1,4 @@
+URxvt*foreground: green
+URxvt*background: black
+URxvt*font: xft: mono
+
