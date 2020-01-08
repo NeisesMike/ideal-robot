@@ -14,3 +14,8 @@ sudo ip link set wlp4s0 up
 sudo wpa_supplicant -B -iwlp4s0 -c /etc/wpa_supplicant.conf -Dnl80211,wext
 sudo dhclient wlp4s0
 
+via gnome network manager
+nm-connection-editor : add and remove connections
+nmcli connection up/down [conn_name} : enable or disable a connection
+nmcli device dis/connect enp3s0/wlp4s0 : enable or disable an adapter
+
