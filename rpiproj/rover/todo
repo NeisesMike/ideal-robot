@@ -1,0 +1,20 @@
+Goal: an exploration robot
+
+Hardware todo:
+    add a speaker for event notification
+        can't use i2s
+        maybe use bluetooth or wifi speaker
+        usb speaker?
+
+Milestones:
+    > A moving camera car
+    > Car moves 'autonomously'
+    Camera recognizes [certain object]
+    Car implements obstacle collision
+    Car wanders until recognizes [certain object]
+    Optimize search time
+        avoid looking the same place twice
+        map out the environment
+    Car takes pictures of New Objects
+
+
