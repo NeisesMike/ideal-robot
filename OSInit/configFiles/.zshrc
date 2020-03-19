@@ -1,7 +1,8 @@
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+#export PYTHONHOME=/home/michael/.miniconda3
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -96,3 +97,12 @@ export PATH="$PATH:$HOME/.miniconda3/bin"
 # disable beep
 # why would anyone ever want this
 unsetopt BEEP
+
+# cross compiler for odroid xu4
+export CROSS_COMPILE="arm-linux-gnueabi-"
+
+# Hol and cake into path
+export PATH="$PATH:$HOME/Documents/projects/cake_hol_poly/HOL/bin"
+export PATH="$PATH:$HOME/Documents/projects/cake_hol_poly/"
+export CAKEML_DIR="$HOME/Documents/projects/cake_hol_poly/cakeml"
+
